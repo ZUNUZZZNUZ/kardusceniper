@@ -1,0 +1,9 @@
+cd cepufarp/
+service apache2 start
+iptables --flush
+echo 1 > /proc/sys/net/ipv4/ip_forward
+iptables -I FORWARD -j NFQUEUE --queue-num 0
+python cepufarp.py
+
+cd kardusceniper/
+python kardusceniper.py
